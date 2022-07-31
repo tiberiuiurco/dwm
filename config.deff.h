@@ -1,5 +1,4 @@
 
-
 #include <X11/XF86keysym.h>
 /* See LICENSE file for copyright and license details. */
 
@@ -53,11 +52,11 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ NULL,		  NULL},
+	{ NULL,       NULL },
 };
 
 /* key definitions */
-#define MODKEY Mod4Mask
+#define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG)												\
 	&((Keychord){1, {{MODKEY, KEY}},								view,           {.ui = 1 << TAG} }), \
 		&((Keychord){1, {{MODKEY|ControlMask, KEY}},					toggleview,     {.ui = 1 << TAG} }), \
@@ -82,6 +81,7 @@ static Keychord *keychords[] = {
 	// &((Keychord){2, {{MODKEY, XK_e}, {MODKEY, XK_e}},			spawn,          {.v = termcmd } }),
 	&((Keychord){2, {{MODKEY, XK_b}, {0, XK_a}},							spawn,      {.v = chrome } }),
 	&((Keychord){2, {{MODKEY, XK_b}, {0, XK_c}},							spawn,      {.v = termcmd }}) ,
+	&((Keychord){1, {{MODKEY|ShiftMask, XK_b}},							togglebar,      {0} }),
 	&((Keychord){1, {{MODKEY, XK_j}},							focusstack,     {.i = +1 } }),
 	&((Keychord){1, {{MODKEY, XK_k}},							focusstack,     {.i = -1 } }),
 	&((Keychord){1, {{MODKEY, XK_i}},							incnmaster,     {.i = +1 } }),
@@ -92,8 +92,8 @@ static Keychord *keychords[] = {
 	&((Keychord){1, {{MODKEY, XK_Tab}},							view,           {0} }),
 	&((Keychord){1, {{MODKEY, XK_w}},					killclient,     {0} }),
 	&((Keychord){1, {{MODKEY, XK_t}},							setlayout,      {.v = &layouts[0]} }),
-	&((Keychord){1, {{MODKEY, XK_m}},							setlayout,      {.v = &layouts[1]} }),
-	&((Keychord){1, {{MODKEY, XK_f}},							setlayout,      {.v = &layouts[2]} }),
+	&((Keychord){1, {{MODKEY, XK_f}},							setlayout,      {.v = &layouts[1]} }),
+	&((Keychord){1, {{MODKEY, XK_m}},							setlayout,      {.v = &layouts[2]} }),
 	&((Keychord){1, {{MODKEY, XK_space}},						setlayout,      {0} }),
 	&((Keychord){1, {{MODKEY|ShiftMask, XK_space}},				togglefloating, {0} }),
 	&((Keychord){1, {{MODKEY, XK_0}},							view,           {.ui = ~0 } }),
@@ -116,8 +116,6 @@ static Keychord *keychords[] = {
 	TAGKEYS(                        XK_9,                      8)
 	&((Keychord){1, {{MODKEY|ShiftMask, XK_q}},					quit,           {0} }),
 	&((Keychord){1, {{MODKEY|ShiftMask, XK_r}},					quit,           {1} }),
-	&((Keychord){1, {{MODKEY|ControlMask, XK_comma}},  cyclelayout,    {.i = -1 } }),
-	&((Keychord){1, {{MODKEY|ControlMask, XK_period}}, cyclelayout,    {.i = +1 } }),
 };
 
 /* button definitions */

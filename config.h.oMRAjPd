@@ -53,7 +53,7 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ NULL,		  NULL},
+	{ NULL,       NULL },
 };
 
 /* key definitions */
@@ -92,8 +92,8 @@ static Keychord *keychords[] = {
 	&((Keychord){1, {{MODKEY, XK_Tab}},							view,           {0} }),
 	&((Keychord){1, {{MODKEY, XK_w}},					killclient,     {0} }),
 	&((Keychord){1, {{MODKEY, XK_t}},							setlayout,      {.v = &layouts[0]} }),
-	&((Keychord){1, {{MODKEY, XK_m}},							setlayout,      {.v = &layouts[1]} }),
-	&((Keychord){1, {{MODKEY, XK_f}},							setlayout,      {.v = &layouts[2]} }),
+	&((Keychord){1, {{MODKEY, XK_f}},							setlayout,      {.v = &layouts[1]} }),
+	&((Keychord){1, {{MODKEY, XK_m}},							setlayout,      {.v = &layouts[2]} }),
 	&((Keychord){1, {{MODKEY, XK_space}},						setlayout,      {0} }),
 	&((Keychord){1, {{MODKEY|ShiftMask, XK_space}},				togglefloating, {0} }),
 	&((Keychord){1, {{MODKEY, XK_0}},							view,           {.ui = ~0 } }),
@@ -116,8 +116,6 @@ static Keychord *keychords[] = {
 	TAGKEYS(                        XK_9,                      8)
 	&((Keychord){1, {{MODKEY|ShiftMask, XK_q}},					quit,           {0} }),
 	&((Keychord){1, {{MODKEY|ShiftMask, XK_r}},					quit,           {1} }),
-	&((Keychord){1, {{MODKEY|ControlMask, XK_comma}},  cyclelayout,    {.i = -1 } }),
-	&((Keychord){1, {{MODKEY|ControlMask, XK_period}}, cyclelayout,    {.i = +1 } }),
 };
 
 /* button definitions */
