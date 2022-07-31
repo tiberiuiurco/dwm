@@ -1,5 +1,6 @@
 #include <X11/XF86keysym.h>
 #include "movestack.c"
+#include "horizgrid.c"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -47,6 +48,7 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "###",      horizgrid },
 	{ NULL,       NULL },
 };
 
