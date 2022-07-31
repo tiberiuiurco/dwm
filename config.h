@@ -1,4 +1,5 @@
 #include <X11/XF86keysym.h>
+#include "movestack.c"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -76,6 +77,10 @@ static Keychord keychords[] = {
 	{1, {{MODKEY, XK_b}},							togglebar,      {0} },
 	{1, {{MODKEY, XK_j}},							focusstack,     {.i = +1 } },
 	{1, {{MODKEY, XK_k}},							focusstack,     {.i = -1 } },
+	{1, {{MODKEY|ShiftMask, XK_h}},				    rotatestack,    {.i = +1 } },
+	{1, {{MODKEY|ShiftMask, XK_l}},      			rotatestack,    {.i = -1 } },
+	{1, {{MODKEY|ShiftMask, XK_j}},				    movestack,      {.i = +1 } },
+	{1, {{MODKEY|ShiftMask, XK_k}},      			movestack,      {.i = -1 } },
 	{1, {{MODKEY, XK_i}},							incnmaster,     {.i = +1 } },
 	{1, {{MODKEY, XK_d}},							incnmaster,     {.i = -1 } },
 	{1, {{MODKEY, XK_h}},							setmfact,       {.f = -0.05} },
