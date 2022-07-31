@@ -121,8 +121,9 @@ static Keychord keychords[] = {
  	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
  	TAGKEYS(                        XK_9,                      8)
-	{1, {{MODKEY|ShiftMask, XK_q}},      quit,           {0} },
+	{1, {{MODKEY|ShiftMask, XK_q}},      			quit,           {0} },
 	{1, {{MODKEY|ShiftMask, XK_r}},					quit,           {1} },
+	{1, {{MODKEY, XK_s}},      						togglesticky,   {0} },
  };
 
 /* button definitions */
