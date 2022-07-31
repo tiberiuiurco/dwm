@@ -46,6 +46,7 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ NULL,       NULL },
 };
 
 /* key definitions */
@@ -70,7 +71,7 @@ static Keychord keychords[] = {
 	/* Keys        function        argument */
 	{1, {{MODKEY, XK_p}},							spawn,          {.v = dmenucmd } },
 	{1, {{MODKEY|ShiftMask, XK_Return}},			spawn,          {.v = rofi } },
-	{1, {{MODKEY, XK_b}},			spawn,          {.v = chrome } },
+	{1, {{MODKEY, XK_b}},							spawn,          {.v = chrome } },
 	{2, {{MODKEY, XK_e}, {MODKEY, XK_e}},			spawn,          {.v = termcmd } },
 	{1, {{MODKEY, XK_b}},							togglebar,      {0} },
 	{1, {{MODKEY, XK_j}},							focusstack,     {.i = +1 } },
@@ -79,12 +80,14 @@ static Keychord keychords[] = {
 	{1, {{MODKEY, XK_d}},							incnmaster,     {.i = -1 } },
 	{1, {{MODKEY, XK_h}},							setmfact,       {.f = -0.05} },
 	{1, {{MODKEY, XK_l}},							setmfact,       {.f = +0.05} },
-	{1, {{MODKEY, XK_Return}},						spawn,           {.v = termcmd} },
+	{1, {{MODKEY, XK_Return}},						spawn,          {.v = termcmd} },
 	{1, {{MODKEY, XK_Tab}},							view,           {0} },
-	{1, {{MODKEY, XK_w}},					killclient,     {0} },
+	{1, {{MODKEY, XK_w}},							killclient,     {0} },
 	{1, {{MODKEY, XK_t}},							setlayout,      {.v = &layouts[0]} },
 	{1, {{MODKEY, XK_m}},							setlayout,      {.v = &layouts[1]} },
 	{1, {{MODKEY, XK_f}},							setlayout,      {.v = &layouts[2]} },
+	{1, {{MODKEY|ControlMask, XK_comma}}, 			cyclelayout,    {.i = -1 } },
+	{1, {{MODKEY|ControlMask, XK_period}},			cyclelayout,    {.i = +1 } },
 	{1, {{MODKEY, XK_space}},						setlayout,      {0} },
 	{1, {{MODKEY|ShiftMask, XK_space}},				togglefloating, {0} },
 	{1, {{MODKEY, XK_0}},							view,           {.ui = ~0 } },
@@ -94,9 +97,9 @@ static Keychord keychords[] = {
 	{1, {{MODKEY|ShiftMask, XK_comma}},				tagmon,         {.i = -1 } },
 	{1, {{MODKEY|ShiftMask, XK_period}},			tagmon,         {.i = +1 } },
 	// Volume	
-	{1,	{{0, XF86XK_AudioLowerVolume}},	spawn,		SHCMD("amixer sset Master 5%-") },
-	{1, {{0, XF86XK_AudioRaiseVolume}},	spawn,		SHCMD("amixer sset Master 5%+") },
-	{1,	{{0, XF86XK_AudioMute}},	spawn,		SHCMD("amixer -D pulse set Master toggle") },
+	{1,	{{0, XF86XK_AudioLowerVolume}},				spawn,		SHCMD("amixer sset Master 5%-") },
+	{1, {{0, XF86XK_AudioRaiseVolume}},				spawn,		SHCMD("amixer sset Master 5%+") },
+	{1,	{{0, XF86XK_AudioMute}},					spawn,		SHCMD("amixer -D pulse set Master toggle") },
  	TAGKEYS(                        XK_1,                      0)
  	TAGKEYS(                        XK_2,                      1)
  	TAGKEYS(                        XK_3,                      2)
