@@ -2,6 +2,7 @@
 
 #include <X11/XF86keysym.h>
 #include "layouts.c"
+#include "movestack.c"
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -90,6 +91,8 @@ static Keychord *keychords[] = {
 	&((Keychord){1, {{MODKEY, XK_k}},							focusstack,     {.i = -1 } }),
 	&((Keychord){1, {{MODKEY|ShiftMask,             XK_j}},      rotatestack,    {.i = +1 } }),
 	&((Keychord){1, {{MODKEY|ShiftMask,             XK_k}},      rotatestack,    {.i = -1 } }),
+	&((Keychord){1, {{MODKEY|ShiftMask,             XK_l}},      movestack,      {.i = +1 } }),
+	&((Keychord){1, {{MODKEY|ShiftMask,             XK_h}},      movestack,      {.i = -1 } }),
 	&((Keychord){1, {{MODKEY, XK_i}},							incnmaster,     {.i = +1 } }),
 	&((Keychord){1, {{MODKEY, XK_d}},							incnmaster,     {.i = -1 } }),
 	&((Keychord){1, {{MODKEY, XK_h}},							setmfact,       {.f = -0.05} }),
