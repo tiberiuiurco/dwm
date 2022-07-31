@@ -1,5 +1,4 @@
 
-
 #include <X11/XF86keysym.h>
 /* See LICENSE file for copyright and license details. */
 
@@ -56,7 +55,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod4Mask
+#define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG)												\
 	&((Keychord){1, {{MODKEY, KEY}},								view,           {.ui = 1 << TAG} }), \
 		&((Keychord){1, {{MODKEY|ControlMask, KEY}},					toggleview,     {.ui = 1 << TAG} }), \
@@ -80,7 +79,8 @@ static Keychord *keychords[] = {
 	&((Keychord){1, {{MODKEY|ShiftMask, XK_Return}},			spawn,          {.v = rofi } }),
 	// &((Keychord){2, {{MODKEY, XK_e}, {MODKEY, XK_e}},			spawn,          {.v = termcmd } }),
 	&((Keychord){2, {{MODKEY, XK_b}, {0, XK_a}},							spawn,      {.v = chrome } }),
-	&((Keychord){2, {{MODKEY, XK_b}, {0, XK_c}},							spawn,      {.v = termcmd }}) ,
+	&((Keychord){2, {{MODKEY, XK_b}, {0, XK_c}},							spawn,      {.v = rofi }}) ,
+	&((Keychord){1, {{MODKEY|ShiftMask, XK_b}},							togglebar,      {0} }),
 	&((Keychord){1, {{MODKEY, XK_j}},							focusstack,     {.i = +1 } }),
 	&((Keychord){1, {{MODKEY, XK_k}},							focusstack,     {.i = -1 } }),
 	&((Keychord){1, {{MODKEY, XK_i}},							incnmaster,     {.i = +1 } }),
