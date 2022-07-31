@@ -32,9 +32,11 @@ static const char *colors[][3]      = {
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class      instance    title       tags mask     isfloating   monitor    scratch key */
+	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        0  },
+	{ "firefox",  NULL,       NULL,       1 << 8,       0,           -1,        0  },
+	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       's' },
+	{ NULL,       NULL,   "ranger",   0,            1,           -1,       'r' }
 };
 
 /* layout(s) */
@@ -71,6 +73,10 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *rofi[] = {"rofi", "-show", "drun", NULL};
 static const char *chrome[] = {"google-chrome-stable", NULL};
+
+// static const char *scratchpadcmd[] = {"s+", "st", "-t", "scratchpad", NULL}; 
+const char *scratchpadcmd[] = {"s", "alacritty", "--title", "scratchpad", "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", NULL };
+const char *scratchpadcmd1[] = {"r", "alacritty", "--title", "ranger", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "ranger", NULL };
 
 static Keychord keychords[] = {
 	/* Keys        function        argument */
@@ -123,7 +129,9 @@ static Keychord keychords[] = {
  	TAGKEYS(                        XK_9,                      8)
 	{1, {{MODKEY|ShiftMask, XK_q}},      			quit,           {0} },
 	{1, {{MODKEY|ShiftMask, XK_r}},					quit,           {1} },
-	{1, {{MODKEY, XK_s}},      						togglesticky,   {0} },
+	{2, {{MODKEY, XK_s}, {0, XK_s}},      						togglesticky,   {0} },
+	{2, {{MODKEY, XK_s}, {0, XK_1}},  togglescratch,  {.v = scratchpadcmd } },
+	{2, {{MODKEY, XK_s}, {0, XK_2}},  togglescratch,  {.v = scratchpadcmd1 } },
  };
 
 /* button definitions */
