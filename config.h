@@ -1,6 +1,7 @@
 
 
 #include <X11/XF86keysym.h>
+#include "layouts.c"
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -12,6 +13,8 @@ static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corne
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
+// GRID
+
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrains Mono:size=11", "JoyPixels:pixelsize=11:antialias=true:autohint=true" };
@@ -53,6 +56,7 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "HHH", 	  grid},
 	{ NULL,		  NULL},
 };
 
@@ -94,6 +98,7 @@ static Keychord *keychords[] = {
 	&((Keychord){1, {{MODKEY, XK_t}},							setlayout,      {.v = &layouts[0]} }),
 	&((Keychord){1, {{MODKEY, XK_m}},							setlayout,      {.v = &layouts[1]} }),
 	&((Keychord){1, {{MODKEY, XK_f}},							setlayout,      {.v = &layouts[2]} }),
+	&((Keychord){1, {{MODKEY, XK_g}},							setlayout,      {.v = &layouts[3]} }),
 	&((Keychord){1, {{MODKEY, XK_space}},						setlayout,      {0} }),
 	&((Keychord){1, {{MODKEY|ShiftMask, XK_space}},				togglefloating, {0} }),
 	&((Keychord){1, {{MODKEY, XK_0}},							view,           {.ui = ~0 } }),
