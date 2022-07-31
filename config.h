@@ -49,6 +49,8 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 	{ "###",      horizgrid },
+	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
 	{ NULL,       NULL },
 };
 
@@ -93,6 +95,9 @@ static Keychord keychords[] = {
 	{1, {{MODKEY, XK_t}},							setlayout,      {.v = &layouts[0]} },
 	{1, {{MODKEY, XK_m}},							setlayout,      {.v = &layouts[1]} },
 	{1, {{MODKEY, XK_f}},							setlayout,      {.v = &layouts[2]} },
+	{1, {{MODKEY, XK_g}},      						setlayout,      {.v = &layouts[3]} },
+	{1, {{MODKEY, XK_u}},      						setlayout,      {.v = &layouts[4]} },
+	{1, {{MODKEY, XK_o}},						    setlayout,      {.v = &layouts[5]} },
 	{1, {{MODKEY|ControlMask, XK_comma}}, 			cyclelayout,    {.i = -1 } },
 	{1, {{MODKEY|ControlMask, XK_period}},			cyclelayout,    {.i = +1 } },
 	{1, {{MODKEY, XK_space}},						setlayout,      {0} },
