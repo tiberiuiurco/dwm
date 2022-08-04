@@ -80,11 +80,12 @@ const char *scratchpadcmd1[] = {"r", "alacritty", "--title", "ranger", "-o", "wi
 
 static Keychord keychords[] = {
 	/* Keys        function        argument */
-	{1, {{MODKEY, XK_p}},							spawn,          {.v = dmenucmd } },
+	// DMenu
+	{2, {{MODKEY, XK_p}, {0, XK_q}},			   spawn,		SHCMD("powermenu")},
 	{1, {{MODKEY|ShiftMask, XK_Return}},			spawn,          {.v = rofi } },
 	{1, {{MODKEY, XK_b}},							spawn,          {.v = chrome } },
+	{1, {{MODKEY|ShiftMask, XK_b}},							togglebar,      {0} },
 	{2, {{MODKEY, XK_e}, {MODKEY, XK_e}},			spawn,          {.v = termcmd } },
-	{1, {{MODKEY, XK_b}},							togglebar,      {0} },
 	{1, {{MODKEY, XK_j}},							focusstack,     {.i = +1 } },
 	{1, {{MODKEY, XK_k}},							focusstack,     {.i = -1 } },
 	{1, {{MODKEY|ShiftMask, XK_h}},				    rotatestack,    {.i = +1 } },
