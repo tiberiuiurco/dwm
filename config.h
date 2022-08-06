@@ -75,13 +75,14 @@ static const char *rofi[] = {"rofi", "-show", "drun", NULL};
 static const char *chrome[] = {"google-chrome-stable", NULL};
 
 // static const char *scratchpadcmd[] = {"s+", "st", "-t", "scratchpad", NULL}; 
-const char *scratchpadcmd[] = {"s", "alacritty", "--title", "scratchpad", "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", NULL };
+const char *scratchpadcmd[] = {"s", "alacritty", "--title", "scratchpad", "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "cmus", NULL };
 const char *scratchpadcmd1[] = {"r", "alacritty", "--title", "ranger", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "ranger", NULL };
 
 static Keychord keychords[] = {
 	/* Keys        function        argument */
 	// DMenu
 	{2, {{MODKEY, XK_p}, {0, XK_q}},			   spawn,		SHCMD("powermenu")},
+	{2, {{MODKEY, XK_p}, {0, XK_p}},			   spawn,		SHCMD("passmenu")},
 	{1, {{MODKEY|ShiftMask, XK_Return}},			spawn,          {.v = rofi } },
 	{1, {{MODKEY, XK_b}},							spawn,          {.v = chrome } },
 	{1, {{MODKEY|ShiftMask, XK_b}},							togglebar,      {0} },
