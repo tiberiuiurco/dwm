@@ -126,6 +126,7 @@ static Keychord keychords[] = {
 	{1,	{{0, XF86XK_AudioLowerVolume}},				spawn,		SHCMD("amixer sset Master 5%-") },
 	{1, {{0, XF86XK_AudioRaiseVolume}},				spawn,		SHCMD("amixer sset Master 5%+") },
 	{1,	{{0, XF86XK_AudioMute}},					spawn,		SHCMD("amixer -D pulse set Master toggle") },
+    {1, {{0, 0x0000ff61}},                               spawn,      SHCMD("flameshot gui") },
  	TAGKEYS(                        XK_1,                      0)
  	TAGKEYS(                        XK_2,                      1)
  	TAGKEYS(                        XK_3,                      2)
