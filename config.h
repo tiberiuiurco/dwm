@@ -73,6 +73,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *rofi[] = {"rofi", "-show", "drun", NULL};
 static const char *chrome[] = {"google-chrome-stable", NULL};
+static const char *anki[] = {"anki", "--no-sandbox", NULL};
 
 // static const char *scratchpadcmd[] = {"s+", "st", "-t", "scratchpad", NULL}; 
 const char *scratchpadcmd[] = {"s", "alacritty", "--title", "scratchpad", "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "cmus", NULL };
@@ -91,6 +92,7 @@ static Keychord keychords[] = {
   {2, {{MODKEY, XK_p}, {0, XK_5}},         spawn,   SHCMD("cmus-remote --shuffle")},
 	{1, {{MODKEY|ShiftMask, XK_Return}},			spawn,          {.v = rofi } },
 	{1, {{MODKEY, XK_b}},							spawn,          {.v = chrome } },
+	{1, {{MODKEY, XK_a}},							spawn,          {.v = anki } },
 	{1, {{MODKEY|ShiftMask, XK_b}},							togglebar,      {0} },
 	{2, {{MODKEY, XK_e}, {MODKEY, XK_e}},			spawn,          {.v = termcmd } },
 	{1, {{MODKEY, XK_j}},							focusstack,     {.i = +1 } },
