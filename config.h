@@ -35,7 +35,7 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor    scratch key */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        0  },
 	{ "firefox",  NULL,       NULL,       1 << 8,       0,           -1,        0  },
-	{ NULL,       NULL,   "scratchpad",   0,            1,           -1,       's' },
+	{ "spterm",       NULL,   "scratchpad",   0,            1,           -1,       's' },
 	{ NULL,       NULL,   "ranger",   0,            1,           -1,       'r' }
 };
 
@@ -72,8 +72,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *rofi[] = {"rofi", "-show", "drun", NULL};
-static const char *chrome[] = {"google-chrome-stable", NULL};
-static const char *anki[] = {"anki", "--no-sandbox", NULL};
+static const char *chrome0[] = {"google-chrome-stable", "--profile-directory=Default", NULL};
+static const char *anki[] = {"QTWEBENGINE_CHROMIUM_FLAGS='--disable-logging'", "anki", "--no-sandbox", NULL};
 
 // static const char *scratchpadcmd[] = {"s+", "st", "-t", "scratchpad", NULL}; 
 const char *scratchpadcmd[] = {"s", "alacritty", "--title", "scratchpad", "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "cmus", NULL };
@@ -90,11 +90,16 @@ static Keychord keychords[] = {
   {2, {{MODKEY, XK_p}, {0, XK_3}},         spawn,   SHCMD("cmus-remote --next")},
   {2, {{MODKEY, XK_p}, {0, XK_4}},         spawn,   SHCMD("cmus-remote --repeat")},
   {2, {{MODKEY, XK_p}, {0, XK_5}},         spawn,   SHCMD("cmus-remote --shuffle")},
+  {2, {{MODKEY, XK_e}, {0, XK_e}},         spawn,   SHCMD("emacsclient -c -a 'emacs'")},
 	{1, {{MODKEY|ShiftMask, XK_Return}},			spawn,          {.v = rofi } },
-	{1, {{MODKEY, XK_b}},							spawn,          {.v = chrome } },
-	{1, {{MODKEY, XK_a}},							spawn,          {.v = anki } },
+	{1, {{MODKEY, XK_o}},			spawn,          SHCMD("obsidian") },
+	{2, {{MODKEY, XK_e}, {0, XK_f}},			spawn,          SHCMD("nautilus ~ --new-window") },
+	{2, {{MODKEY, XK_b}, {0, XK_1}},							spawn,          {.v = chrome0 } },
+	{2, {{MODKEY, XK_b}, {0, XK_2}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 1'") },
+	{2, {{MODKEY, XK_b}, {0, XK_3}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 2'") },
+//	{1, {{MODKEY, XK_a}},							spawn,          {.v = anki } },
+	{1, {{MODKEY, XK_a}},							spawn,          SHCMD("QTWEBENGINE_CHROMIUM_FLAGS='--disable-logging' anki")},
 	{1, {{MODKEY|ShiftMask, XK_b}},							togglebar,      {0} },
-	{2, {{MODKEY, XK_e}, {MODKEY, XK_e}},			spawn,          {.v = termcmd } },
 	{1, {{MODKEY, XK_j}},							focusstack,     {.i = +1 } },
 	{1, {{MODKEY, XK_k}},							focusstack,     {.i = -1 } },
 	{1, {{MODKEY|ShiftMask, XK_h}},				    rotatestack,    {.i = +1 } },
