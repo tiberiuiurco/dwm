@@ -12,7 +12,8 @@ static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;     /* 0 means no bar */
-static const int topbar             = 1;     /* 0 means bottom bar */
+// static const int topbar             = 1;     /* 0 means bottom bar */
+static const int topbar             = 0;     /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrains Mono:size=11", "JoyPixels:pixelsize=11:antialias=true:autohint=true" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
@@ -74,6 +75,7 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *rofi[] = {"rofi", "-show", "drun", NULL};
 static const char *chrome0[] = {"google-chrome-stable", "--profile-directory=Default", NULL};
 static const char *anki[] = {"QTWEBENGINE_CHROMIUM_FLAGS='--disable-logging'", "anki", "--no-sandbox", NULL};
+static const char *newsboat[] = {"alacritty", "-e", "newsboat", NULL};
 
 // static const char *scratchpadcmd[] = {"s+", "st", "-t", "scratchpad", NULL}; 
 const char *scratchpadcmd[] = {"s", "alacritty", "--title", "scratchpad", "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "cmus", NULL };
@@ -99,6 +101,7 @@ static Keychord keychords[] = {
 	{2, {{MODKEY, XK_b}, {0, XK_3}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 2'") },
 //	{1, {{MODKEY, XK_a}},							spawn,          {.v = anki } },
 	{1, {{MODKEY, XK_a}},							spawn,          SHCMD("QTWEBENGINE_CHROMIUM_FLAGS='--disable-logging' anki")},
+	{1, {{MODKEY, XK_n}}, 							spawn,          {.v = newsboat } },
 	{1, {{MODKEY|ShiftMask, XK_b}},							togglebar,      {0} },
 	{1, {{MODKEY, XK_j}},							focusstack,     {.i = +1 } },
 	{1, {{MODKEY, XK_k}},							focusstack,     {.i = -1 } },
