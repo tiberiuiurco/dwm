@@ -130,8 +130,8 @@ static Keychord keychords[] = {
 	{1, {{MODKEY|ShiftMask, XK_0}},					tag,            {.ui = ~0 } },
 	{1, {{MODKEY, XK_comma}},						focusmon,       {.i = -1 } },
 	{1, {{MODKEY, XK_period}},						focusmon,       {.i = +1 } },
-	{1, {{MODKEY|ShiftMask, XK_comma}},				tagmon,         {.i = -1 } },
-	{1, {{MODKEY|ShiftMask, XK_period}},			tagmon,         {.i = +1 } },
+//	{1, {{MODKEY|ShiftMask, XK_comma}},				tagmon,         {.i = -1 } },
+//	{1, {{MODKEY|ShiftMask, XK_period}},			tagmon,         {.i = +1 } },
 	// Volume	
 	{1,	{{0, XF86XK_AudioLowerVolume}},				spawn,		SHCMD("amixer sset Master 5%-") },
 	{1, {{0, XF86XK_AudioRaiseVolume}},				spawn,		SHCMD("amixer sset Master 5%+") },
