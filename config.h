@@ -71,9 +71,10 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 static const char *rofi[] = {"rofi", "-show", "drun", NULL};
-static const char *chrome0[] = {"google-chrome-stable", "--profile-directory=Default", NULL};
+//static const char *chrome0[] = {"google-chrome-stable", "--profile-directory=Default", NULL};
+static const char *chrome0[] = {"firefox", NULL};
 static const char *anki[] = {"QTWEBENGINE_CHROMIUM_FLAGS='--disable-logging'", "anki", "--no-sandbox", NULL};
 static const char *newsboat[] = {"alacritty", "-e", "newsboat", NULL};
 
@@ -95,7 +96,7 @@ static Keychord keychords[] = {
   {2, {{MODKEY, XK_e}, {0, XK_e}},         spawn,   SHCMD("emacsclient -c -a 'emacs'")},
 	{1, {{MODKEY|ShiftMask, XK_Return}},			spawn,          {.v = rofi } },
 	{1, {{MODKEY, XK_o}},			spawn,          SHCMD("obsidian") },
-	{2, {{MODKEY, XK_e}, {0, XK_f}},			spawn,          SHCMD("nautilus ~ --new-window") },
+	{2, {{MODKEY, XK_e}, {0, XK_f}},			spawn,          SHCMD("thunar") },
 	{2, {{MODKEY, XK_b}, {0, XK_1}},							spawn,          {.v = chrome0 } },
 	{2, {{MODKEY, XK_b}, {0, XK_2}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 1'") },
 	{2, {{MODKEY, XK_b}, {0, XK_3}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 2'") },
@@ -137,6 +138,7 @@ static Keychord keychords[] = {
 	{1, {{0, XF86XK_AudioRaiseVolume}},				spawn,		SHCMD("amixer sset Master 5%+") },
 	{1,	{{0, XF86XK_AudioMute}},					spawn,		SHCMD("amixer -D pulse set Master toggle") },
     {1, {{0, 0x0000ff61}},                               spawn,      SHCMD("flameshot gui") },
+	{2, {{MODKEY, XK_b}, {0, XK_9}},							spawn,          SHCMD("killall pipewire") },
  	TAGKEYS(                        XK_1,                      0)
  	TAGKEYS(                        XK_2,                      1)
  	TAGKEYS(                        XK_3,                      2)
