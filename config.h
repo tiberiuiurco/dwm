@@ -76,7 +76,7 @@ static const char *rofi[] = {"rofi", "-show", "drun", NULL};
 //static const char *chrome0[] = {"google-chrome-stable", "--profile-directory=Default", NULL};
 static const char *chrome0[] = {"firefox", NULL};
 static const char *anki[] = {"QTWEBENGINE_CHROMIUM_FLAGS='--disable-logging'", "anki", "--no-sandbox", NULL};
-static const char *newsboat[] = {"alacritty", "-e", "newsboat", NULL};
+static const char *newsboat[] = {"kitty", "-e", "newsboat", NULL};
 
 // static const char *scratchpadcmd[] = {"s+", "st", "-t", "scratchpad", NULL}; 
 const char *scratchpadcmd[] = {"s", "alacritty", "--title", "scratchpad", "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "cmus", NULL };
