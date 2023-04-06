@@ -13,7 +13,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;     /* 0 means no bar */
 // static const int topbar             = 1;     /* 0 means bottom bar */
-static const int topbar             = 0;     /* 0 means bottom bar */
+static const int topbar             = 1;     /* 0 means bottom bar */
 static const char *fonts[]          = { "JetBrains Mono:size=11", "JoyPixels:pixelsize=11:antialias=true:autohint=true" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
@@ -75,6 +75,7 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *rofi[] = {"rofi", "-show", "drun", NULL};
 //static const char *chrome0[] = {"google-chrome-stable", "--profile-directory=Default", NULL};
 static const char *chrome0[] = {"firefox", NULL};
+static const char *brave[] = {"brave", NULL};
 static const char *anki[] = {"QTWEBENGINE_CHROMIUM_FLAGS='--disable-logging'", "anki", "--no-sandbox", NULL};
 static const char *newsboat[] = {"kitty", "-e", "newsboat", NULL};
 
@@ -87,17 +88,20 @@ static Keychord keychords[] = {
 	// DMenu
 	{2, {{MODKEY, XK_p}, {0, XK_q}},			   spawn,		SHCMD("powermenu")},
 	{2, {{MODKEY, XK_p}, {0, XK_p}},			   spawn,		SHCMD("passmenu")},
+	{2, {{MODKEY, XK_p}, {0, XK_a}},			   spawn,		SHCMD("pavucontrol")},
+	/* {2, {{MODKEY, XK_p}, {0, XK_1}},			   spawn,		SHCMD("pavucontrol")}, */
+	/* {2, {{MODKEY, XK_p}, {0, XK_3}},			   spawn,		SHCMD("pavucontrol")}, */
   // Cmus bindings
-  {2, {{MODKEY, XK_p}, {0, XK_1}},         spawn,   SHCMD("cmus-remote --prev")},
-  {2, {{MODKEY, XK_p}, {0, XK_2}},         spawn,   SHCMD("cmus-remote --pause")},
-  {2, {{MODKEY, XK_p}, {0, XK_3}},         spawn,   SHCMD("cmus-remote --next")},
-  {2, {{MODKEY, XK_p}, {0, XK_4}},         spawn,   SHCMD("cmus-remote --repeat")},
-  {2, {{MODKEY, XK_p}, {0, XK_5}},         spawn,   SHCMD("cmus-remote --shuffle")},
+  /* {2, {{MODKEY, XK_p}, {0, XK_1}},         spawn,   SHCMD("cmus-remote --prev")}, */
+  /* {2, {{MODKEY, XK_p}, {0, XK_2}},         spawn,   SHCMD("cmus-remote --pause")}, */
+  /* {2, {{MODKEY, XK_p}, {0, XK_3}},         spawn,   SHCMD("cmus-remote --next")}, */
+  /* {2, {{MODKEY, XK_p}, {0, XK_4}},         spawn,   SHCMD("cmus-remote --repeat")}, */
+  /* {2, {{MODKEY, XK_p}, {0, XK_5}},         spawn,   SHCMD("cmus-remote --shuffle")}, */
   {2, {{MODKEY, XK_e}, {0, XK_e}},         spawn,   SHCMD("emacsclient -c -a 'emacs'")},
 	{1, {{MODKEY|ShiftMask, XK_Return}},			spawn,          {.v = rofi } },
 	{1, {{MODKEY, XK_o}},			spawn,          SHCMD("obsidian") },
 	{2, {{MODKEY, XK_e}, {0, XK_f}},			spawn,          SHCMD("thunar") },
-	{2, {{MODKEY, XK_b}, {0, XK_1}},							spawn,          {.v = chrome0 } },
+	{2, {{MODKEY, XK_b}, {0, XK_1}},							spawn,          {.v = brave } },
 	{2, {{MODKEY, XK_b}, {0, XK_2}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 1'") },
 	{2, {{MODKEY, XK_b}, {0, XK_3}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 2'") },
 //	{1, {{MODKEY, XK_a}},							spawn,          {.v = anki } },
@@ -134,9 +138,12 @@ static Keychord keychords[] = {
 	{1, {{MODKEY|ShiftMask, XK_comma}},				tagmon,         {.i = -1 } },
 	{1, {{MODKEY|ShiftMask, XK_period}},			tagmon,         {.i = +1 } },
 	// Volume	
-	{1,	{{0, XF86XK_AudioLowerVolume}},				spawn,		SHCMD("amixer sset Master 5%-") },
-	{1, {{0, XF86XK_AudioRaiseVolume}},				spawn,		SHCMD("amixer sset Master 5%+") },
-	{1,	{{0, XF86XK_AudioMute}},					spawn,		SHCMD("amixer -D pulse set Master toggle") },
+	/* {1,	{{0, XF86XK_AudioLowerVolume}},				spawn,		SHCMD("amixer sset Master 5%-") }, */
+	/* {1, {{0, XF86XK_AudioRaiseVolume}},				spawn,		SHCMD("amixer sset Master 5%+") }, */
+	/* {1,	{{0, XF86XK_AudioMute}},					spawn,		SHCMD("amixer -D pulse set Master toggle") }, */
+	{1,	{{0, XK_F2}},				spawn,		SHCMD("pamixer -d 5") },
+	{1, {{0, XK_F3}},				spawn,		SHCMD("pamixer -i 5") },
+	{1,	{{0, XK_F4}},					spawn,		SHCMD("pamixer -t") },
     {1, {{0, 0x0000ff61}},                               spawn,      SHCMD("flameshot gui") },
 	{2, {{MODKEY, XK_b}, {0, XK_9}},							spawn,          SHCMD("killall pipewire") },
  	TAGKEYS(                        XK_1,                      0)
