@@ -71,38 +71,31 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 static const char *rofi[] = {"rofi", "-show", "drun", NULL};
-static const char *chrome0[] = {"google-chrome-stable", "--profile-directory=Default", NULL};
-static const char *anki[] = {"QTWEBENGINE_CHROMIUM_FLAGS='--disable-logging'", "anki", "--no-sandbox", NULL};
-static const char *newsboat[] = {"alacritty", "-e", "newsboat", NULL};
+static const char *newsboat[] = {"kitty", "-e", "newsboat", NULL};
 
 // static const char *scratchpadcmd[] = {"s+", "st", "-t", "scratchpad", NULL}; 
-const char *scratchpadcmd[] = {"s", "alacritty", "--title", "scratchpad", "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "cmus", NULL };
-const char *scratchpadcmd1[] = {"r", "alacritty", "--title", "ranger", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "ranger", NULL };
+const char *scratchpadcmd[] = {"s", "kitty", "--title", "scratchpad", "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "cmus", NULL };
+const char *scratchpadcmd1[] = {"r", "kitty", "--title", "ranger", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=34", "-e", "ranger", NULL };
 
 static Keychord keychords[] = {
 	/* Keys        function        argument */
-	// DMenu
+	// Menus
+	{1, {{MODKEY|ShiftMask, XK_Return}},			spawn,          {.v = rofi } },
 	{2, {{MODKEY, XK_p}, {0, XK_q}},			   spawn,		SHCMD("powermenu")},
 	{2, {{MODKEY, XK_p}, {0, XK_p}},			   spawn,		SHCMD("passmenu")},
-  // Cmus bindings
-  {2, {{MODKEY, XK_p}, {0, XK_1}},         spawn,   SHCMD("cmus-remote --prev")},
-  {2, {{MODKEY, XK_p}, {0, XK_2}},         spawn,   SHCMD("cmus-remote --pause")},
-  {2, {{MODKEY, XK_p}, {0, XK_3}},         spawn,   SHCMD("cmus-remote --next")},
-  {2, {{MODKEY, XK_p}, {0, XK_4}},         spawn,   SHCMD("cmus-remote --repeat")},
-  {2, {{MODKEY, XK_p}, {0, XK_5}},         spawn,   SHCMD("cmus-remote --shuffle")},
-  {2, {{MODKEY, XK_e}, {0, XK_e}},         spawn,   SHCMD("emacsclient -c -a 'emacs'")},
-	{1, {{MODKEY|ShiftMask, XK_Return}},			spawn,          {.v = rofi } },
-	{1, {{MODKEY, XK_o}},			spawn,          SHCMD("obsidian") },
-	{2, {{MODKEY, XK_e}, {0, XK_f}},			spawn,          SHCMD("nautilus ~ --new-window") },
-	{2, {{MODKEY, XK_b}, {0, XK_1}},							spawn,          {.v = chrome0 } },
-	{2, {{MODKEY, XK_b}, {0, XK_2}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 1'") },
-	{2, {{MODKEY, XK_b}, {0, XK_3}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 2'") },
-//	{1, {{MODKEY, XK_a}},							spawn,          {.v = anki } },
-	{1, {{MODKEY, XK_a}},							spawn,          SHCMD("QTWEBENGINE_CHROMIUM_FLAGS='--disable-logging' anki")},
+	/* {2, {{MODKEY, XK_b}, {0, XK_1}},							spawn,          {.v = chrome0 } }, */
+	/* {2, {{MODKEY, XK_b}, {0, XK_2}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 1'") }, */
+	/* {2, {{MODKEY, XK_b}, {0, XK_3}},							spawn,          SHCMD("google-chrome-stable --profile-directory='Profile 2'") }, */
+	//	Apps
+	{1, {{MODKEY, XK_Return}},						spawn,          {.v = termcmd} },
 	{1, {{MODKEY, XK_n}}, 							spawn,          {.v = newsboat } },
-	{1, {{MODKEY|ShiftMask, XK_b}},							togglebar,      {0} },
+	{1, {{MODKEY, XK_a}},							spawn,          SHCMD("QTWEBENGINE_CHROMIUM_FLAGS='--disable-logging' anki")},
+	{2, {{MODKEY, XK_e}, {0, XK_f}},			spawn,          SHCMD("thunar") },
+  {1, {{0, 0x0000ff61}},                               spawn,      SHCMD("flameshot gui") },
+	/// Workspaces
+	// Stack
 	{1, {{MODKEY, XK_j}},							focusstack,     {.i = +1 } },
 	{1, {{MODKEY, XK_k}},							focusstack,     {.i = -1 } },
 	{1, {{MODKEY|ShiftMask, XK_h}},				    rotatestack,    {.i = +1 } },
@@ -111,11 +104,13 @@ static Keychord keychords[] = {
 	{1, {{MODKEY|ShiftMask, XK_k}},      			movestack,      {.i = -1 } },
 	{1, {{MODKEY, XK_i}},							incnmaster,     {.i = +1 } },
 	{1, {{MODKEY, XK_d}},							incnmaster,     {.i = -1 } },
+	// Resize
 	{1, {{MODKEY, XK_h}},							setmfact,       {.f = -0.05} },
 	{1, {{MODKEY, XK_l}},							setmfact,       {.f = +0.05} },
-	{1, {{MODKEY, XK_Return}},						spawn,          {.v = termcmd} },
-	{1, {{MODKEY, XK_Tab}},							view,           {0} },
-	{1, {{MODKEY, XK_w}},							killclient,     {0} },
+	/* {1, {{MODKEY, XK_0}},							view,           {.ui = ~0 } }, */
+	/* {1, {{MODKEY|ShiftMask, XK_0}},					tag,            {.ui = ~0 } }, */
+	// Layouts
+	{1, {{MODKEY|ShiftMask, XK_space}},				togglefloating, {0} },
 	{1, {{MODKEY, XK_t}},							setlayout,      {.v = &layouts[0]} },
 	{1, {{MODKEY, XK_m}},							setlayout,      {.v = &layouts[1]} },
 	{1, {{MODKEY, XK_f}},							setlayout,      {.v = &layouts[2]} },
@@ -124,19 +119,32 @@ static Keychord keychords[] = {
 	{1, {{MODKEY, XK_o}},						    setlayout,      {.v = &layouts[5]} },
 	{1, {{MODKEY|ControlMask, XK_comma}}, 			cyclelayout,    {.i = -1 } },
 	{1, {{MODKEY|ControlMask, XK_period}},			cyclelayout,    {.i = +1 } },
+	{1, {{MODKEY, XK_Tab}},							view,           {0} },
 	{1, {{MODKEY, XK_space}},						setlayout,      {0} },
-	{1, {{MODKEY|ShiftMask, XK_space}},				togglefloating, {0} },
-	{1, {{MODKEY, XK_0}},							view,           {.ui = ~0 } },
-	{1, {{MODKEY|ShiftMask, XK_0}},					tag,            {.ui = ~0 } },
+	// Monitors
 	{1, {{MODKEY, XK_comma}},						focusmon,       {.i = -1 } },
 	{1, {{MODKEY, XK_period}},						focusmon,       {.i = +1 } },
+	// Sound
+	{2, {{MODKEY, XK_p}, {0, XK_a}},			   spawn,		SHCMD("pavucontrol")},
+	{2, {{MODKEY, XK_p}, {0, XK_9}},							spawn,          SHCMD("killall pipewire") },
+  // Cmus bindings
+  {2, {{MODKEY, XK_p}, {0, XK_1}},         spawn,   SHCMD("cmus-remote --prev")},
+  {2, {{MODKEY, XK_p}, {0, XK_2}},         spawn,   SHCMD("cmus-remote --pause")},
+  {2, {{MODKEY, XK_p}, {0, XK_3}},         spawn,   SHCMD("cmus-remote --next")},
+  {2, {{MODKEY, XK_p}, {0, XK_4}},         spawn,   SHCMD("cmus-remote --repeat")},
+  {2, {{MODKEY, XK_p}, {0, XK_5}},         spawn,   SHCMD("cmus-remote --shuffle")},
+	// Dwm Stuff
+	{1, {{MODKEY|ShiftMask, XK_b}},							togglebar,      {0} },
+	{1, {{MODKEY, XK_w}},							killclient,     {0} },
 //	{1, {{MODKEY|ShiftMask, XK_comma}},				tagmon,         {.i = -1 } },
 //	{1, {{MODKEY|ShiftMask, XK_period}},			tagmon,         {.i = +1 } },
 	// Volume	
-	{1,	{{0, XF86XK_AudioLowerVolume}},				spawn,		SHCMD("amixer sset Master 5%-") },
-	{1, {{0, XF86XK_AudioRaiseVolume}},				spawn,		SHCMD("amixer sset Master 5%+") },
-	{1,	{{0, XF86XK_AudioMute}},					spawn,		SHCMD("amixer -D pulse set Master toggle") },
-    {1, {{0, 0x0000ff61}},                               spawn,      SHCMD("flameshot gui") },
+	/* {1,	{{0, XF86XK_AudioLowerVolume}},				spawn,		SHCMD("amixer sset Master 5%-") }, */
+	/* {1, {{0, XF86XK_AudioRaiseVolume}},				spawn,		SHCMD("amixer sset Master 5%+") }, */
+	/* {1,	{{0, XF86XK_AudioMute}},					spawn,		SHCMD("amixer -D pulse set Master toggle") }, */
+	{1,	{{0, XK_F2}},				spawn,		SHCMD("pamixer -d 5") },
+	{1, {{0, XK_F3}},				spawn,		SHCMD("pamixer -i 5") },
+	{1,	{{0, XK_F4}},					spawn,		SHCMD("pamixer -t") },
  	TAGKEYS(                        XK_1,                      0)
  	TAGKEYS(                        XK_2,                      1)
  	TAGKEYS(                        XK_3,                      2)
